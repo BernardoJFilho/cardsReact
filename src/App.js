@@ -21,6 +21,27 @@ class App extends React.Component {
     });
   };
 
+  isSaveButtonDisabled = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+    } = this.state;
+    const strings = [cardName, cardDescription, cardImage];
+    const arrayNumbers = [cardAttr1, cardAttr2, cardAttr3];
+    const checkEmptyField = strings.some((param1) => !param1);
+    const individualMaxPower = 90;
+    const checkPowerNumber = arrayNumbers.every((param1) => param1 <= individualMaxPower
+    && param1 >= 0);
+    const maxPower = 210;
+    const resultThree = parseInt(arrayNumbers[0], 10)
+    + parseInt(arrayNumbers[1], 10) + parseInt(arrayNumbers[2], 10);
+    return !(!checkEmptyField && checkPowerNumber && resultThree <= maxPower);
+  };
+
   render() {
     const {
       cardName,
@@ -45,6 +66,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
+          isSaveButtonDisabled={ this.isSaveButtonDisabled() }
         />
         <Card
           cardName={ cardName }
