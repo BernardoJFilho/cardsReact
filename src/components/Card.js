@@ -29,20 +29,21 @@ class Card extends React.Component {
         <br />
         <br />
         <br />
-        {cardList.map((list) => (
-          <div key={ list.cardName }>
-            <br />
-            <div>{list.cardName}</div>
-            <img src={ list.cardImage } alt={ list.cardName } />
-            <div>{list.cardDescription}</div>
-            <div>{list.cardAttr1}</div>
-            <div>{list.cardAttr2}</div>
-            <div>{list.cardAttr3}</div>
-            <div>{list.cardRare}</div>
-            {list.cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null}
-            <br />
-          </div>
-        ))}
+        { cardList > 0
+          && (cardList.map((list) => (
+            <div key={ list.cardName }>
+              <br />
+              <div>{list.cardName}</div>
+              <img src={ list.cardImage } alt={ list.cardName } />
+              <div>{list.cardDescription}</div>
+              <div>{list.cardAttr1}</div>
+              <div>{list.cardAttr2}</div>
+              <div>{list.cardAttr3}</div>
+              <div>{list.cardRare}</div>
+              {list.cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : ''}
+              <br />
+            </div>
+          )))}
       </>
     );
   }
