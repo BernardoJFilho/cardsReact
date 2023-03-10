@@ -37,9 +37,32 @@ class App extends React.Component {
     const checkPowerNumber = arrayNumbers.every((param1) => param1 <= individualMaxPower
     && param1 >= 0);
     const maxPower = 210;
-    const resultThree = parseInt(arrayNumbers[0], 10)
-    + parseInt(arrayNumbers[1], 10) + parseInt(arrayNumbers[2], 10);
-    return !(!checkEmptyField && checkPowerNumber && resultThree <= maxPower);
+    const soma = arrayNumbers.reduce(
+      (sum, number) => sum + parseInt(number, 10),
+      0,
+    );
+    return !(!checkEmptyField && checkPowerNumber && soma <= maxPower);
+  };
+
+  onSaveButtonClick = () => {
+    // const {
+    //   cardName,
+    //   cardDescription,
+    //   cardAttr1,
+    //   cardAttr2,
+    //   cardAttr3,
+    //   cardImage,
+    // } = this.state;
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
+    });
   };
 
   render() {
@@ -67,6 +90,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ this.isSaveButtonDisabled() }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
