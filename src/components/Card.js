@@ -12,6 +12,7 @@ class Card extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      cardList,
     } = this.props;
     return (
       <>
@@ -23,6 +24,22 @@ class Card extends React.Component {
         <div data-testid="attr3-card">{cardAttr3}</div>
         <div data-testid="rare-card">{cardRare}</div>
         {cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        {cardList.map((list) => (
+          <div key={ list.cardName }>
+            <div>{list.cardName}</div>
+            <img src={ list.cardImage } alt={ list.cardName } />
+            <div>{list.cardDescription}</div>
+            <div>{list.cardAttr1}</div>
+            <div>{list.cardAttr2}</div>
+            <div>{list.cardAttr3}</div>
+            <div>{list.cardRare}</div>
+          </div>
+        ))}
       </>
     );
   }
@@ -37,6 +54,16 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  cardList: PropTypes.arrayOf(
+    PropTypes.shape({
+      cardName: PropTypes.string.isRequired,
+      cardDescription: PropTypes.string.isRequired,
+      cardAttr1: PropTypes.number.isRequired,
+      cardAttr2: PropTypes.number.isRequired,
+      cardAttr3: PropTypes.number.isRequired,
+      cardImage: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default Card;
