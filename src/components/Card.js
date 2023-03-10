@@ -31,6 +31,7 @@ class Card extends React.Component {
         <br />
         {cardList.map((list) => (
           <div key={ list.cardName }>
+            <br />
             <div>{list.cardName}</div>
             <img src={ list.cardImage } alt={ list.cardName } />
             <div>{list.cardDescription}</div>
@@ -38,6 +39,8 @@ class Card extends React.Component {
             <div>{list.cardAttr2}</div>
             <div>{list.cardAttr3}</div>
             <div>{list.cardRare}</div>
+            {list.cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null}
+            <br />
           </div>
         ))}
       </>
