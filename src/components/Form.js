@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Text } from '@mantine/core';
+import { Button, Checkbox, Input, NumberInput, Select, Stack, Text } from '@mantine/core';
 
 class Form extends React.Component {
   render() {
@@ -17,110 +17,95 @@ class Form extends React.Component {
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
+      selectChange,
     } = this.props;
+
     return (
-      <div>
+      <Stack>
         <Text>Adicione uma Carta: </Text>
-        <label htmlFor="name">Nome: </label>
         <Input
           type="text"
           name="cardName"
+          placeholder="Nome"
           data-testid="name-input"
           id="name"
           value={ cardName }
           onChange={ onInputChange }
         />
-        <br />
-        <label>
-          Descrição:
-          <input
-            type="textarea"
-            name="cardDescription"
-            data-testid="description-input"
-            id="description"
-            value={ cardDescription }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <label>
-          Primeiro Atributo:
-          <input
-            type="number"
-            name="cardAttr1"
-            data-testid="attr1-input"
-            id="firstAtribut"
-            value={ cardAttr1 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <label>
-          Segundo Atributo:
-          <input
-            type="number"
-            name="cardAttr2"
-            data-testid="attr2-input"
-            id="secondAtribut"
-            value={ cardAttr2 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <label>
-          Segundo Atributo:
-          <input
-            type="number"
-            name="cardAttr3"
-            data-testid="attr3-input"
-            id="thirdAtribut"
-            value={ cardAttr3 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <label>
-          Imagem da Carta:
-          <input
-            type="text"
-            name="cardImage"
-            data-testid="image-input"
-            id="imgCard"
-            value={ cardImage }
-            onChange={ onInputChange }
-          />
-        </label>
-        <br />
-        <label>
-          Raridade da Carta:
-          <select
-            id="selectRaryCart"
-            name="cardRare"
-            data-testid="rare-input"
-            value={ cardRare }
-            onChange={ onInputChange }
-          >
-            <option>normal</option>
-            <option>raro</option>
-            <option>muito raro</option>
-          </select>
-        </label>
-        <br />
+        <Input
+          type="textarea"
+          placeholder="Descrição"
+          name="cardDescription"
+          data-testid="description-input"
+          id="description"
+          value={ cardDescription }
+          onChange={ onInputChange }
+        />
+
+        <NumberInput
+          label="Primeiro Atributo"
+          type="number"
+          name="cardAttr1"
+          data-testid="attr1-input"
+          id="firstAtribut"
+          value={ cardAttr1 }
+          onChange={ onInputChange }
+        />
+        <NumberInput
+          type="number"
+          label="Segundo Atributo"
+          name="cardAttr2"
+          data-testid="attr2-input"
+          id="secondAtribut"
+          value={ cardAttr2 }
+          onChange={ onInputChange }
+        />
+        <NumberInput
+          type="number"
+          label="Terceiro Atributo"
+          name="cardAttr3"
+          data-testid="attr3-input"
+          id="thirdAtribut"
+          value={ cardAttr3 }
+          onChange={ onInputChange }
+        />
+        <Input
+          type="text"
+          placeholder="Imagem"
+          name="cardImage"
+          data-testid="image-input"
+          id="imgCard"
+          value={ cardImage }
+          onChange={ onInputChange }
+        />
+        <Select
+          id="selectRaryCart"
+          label="Raridade da Carta"
+          name="cardRare"
+          data-testid="rare-input"
+          value={ cardRare }
+          onChange={ selectChange }
+          data={ [
+            { name: 'cardRare', value: 'normal', label: 'normal', type: 'select' },
+            { name: 'cardRare', value: 'raro', label: 'raro', type: 'select' },
+            { name: 'cardRare',
+              value: 'muito raro',
+              label: 'muito raro',
+              type: 'select' },
+          ] }
+        />
         {hasTrunfo ? <div>Você já tem um Super Trunfo em seu baralho</div>
           : (
-            <label>
-              Super Trunfo:
-              <input
-                type="checkbox"
-                name="cardTrunfo"
-                data-testid="trunfo-input"
-                id="superTrunfo"
-                checked={ cardTrunfo }
-                onChange={ onInputChange }
-              />
-            </label>)}
-        <br />
-        <button
+            <Checkbox
+              label="Super Trunfo"
+              type="checkbox"
+              name="cardTrunfo"
+              data-testid="trunfo-input"
+              id="superTrunfo"
+              checked={ cardTrunfo }
+              onChange={ onInputChange }
+            />)}
+        <Button
           data-testid="save-button"
           id="salveButton"
           name="saveButton"
@@ -128,8 +113,8 @@ class Form extends React.Component {
           onClick={ onSaveButtonClick }
         >
           Salvar
-        </button>
-      </div>
+        </Button>
+      </Stack>
     );
   }
 }
@@ -146,6 +131,7 @@ Form.propTypes = {
   hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
+  selectChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
 };
 

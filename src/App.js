@@ -1,4 +1,5 @@
 import React from 'react';
+import { Center, Flex, Stack, Title } from '@mantine/core';
 import Form from './components/Form';
 import Card from './components/Card';
 
@@ -25,6 +26,12 @@ class App extends React.Component {
     cardTrunfo: false,
     cardList: [],
     hasTrunfo: false,
+  };
+
+  selectChange = (i) => {
+    this.setState({
+      cardRare: i,
+    });
   };
 
   onInputChange = ({ target }) => {
@@ -108,34 +115,48 @@ class App extends React.Component {
       hasTrunfo,
     } = this.state;
     return (
-      <div>
-        <h1>Tryunfo</h1>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          onInputChange={ this.onInputChange }
-          isSaveButtonDisabled={ this.isSaveButtonDisabled() }
-          onSaveButtonClick={ this.onSaveButtonClick }
-          hasTrunfo={ hasTrunfo }
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          onSaveButtonClick={ this.onSaveButtonClick }
-          cardList={ cardList }
-        />
+      <Stack>
+        <Center>
+          <Title order={ 1 }>Tryunfo</Title>
+        </Center>
+        <Flex
+          mih={ 50 }
+          gap={ 400 }
+          justify="center"
+          align="center"
+          direction="row"
+          wrap="wrap"
+        >
+          <Form
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            onInputChange={ this.onInputChange }
+            isSaveButtonDisabled={ this.isSaveButtonDisabled() }
+            onSaveButtonClick={ this.onSaveButtonClick }
+            selectChange={ this.selectChange }
+            hasTrunfo={ hasTrunfo }
+          />
+          <Flex direction="column" w={ 200 }>
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+              onSaveButtonClick={ this.onSaveButtonClick }
+              cardList={ cardList }
+            />
+          </Flex>
+        </Flex>
         {cardList.map((list) => (
           <div key={ list.cardName }>
             <br />
@@ -150,7 +171,7 @@ class App extends React.Component {
             <br />
           </div>
         ))}
-      </div>
+      </Stack>
     );
   }
 }
