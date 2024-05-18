@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Input, Text } from '@mantine/core';
 
 class Form extends React.Component {
   render() {
@@ -19,9 +20,9 @@ class Form extends React.Component {
     } = this.props;
     return (
       <div>
-        <h3>Adicione uma Carta: </h3>
+        <Text>Adicione uma Carta: </Text>
         <label htmlFor="name">Nome: </label>
-        <input
+        <Input
           type="text"
           name="cardName"
           data-testid="name-input"
