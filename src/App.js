@@ -28,16 +28,9 @@ class App extends React.Component {
     hasTrunfo: false,
   };
 
-  selectChange = (i) => {
+  onInputChange = (name, value) => {
     this.setState({
-      cardRare: i,
-    });
-  };
-
-  onInputChange = ({ target }) => {
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({
-      [target.name]: value,
+      [name]: value,
     });
   };
 

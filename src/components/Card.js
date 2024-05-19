@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Card as Batata, Image, Text, Badge, Group } from '@mantine/core';
 
 class Card extends React.Component {
   render() {
@@ -14,21 +15,24 @@ class Card extends React.Component {
       cardTrunfo,
     } = this.props;
     return (
-      <>
-        <div data-testid="name-card">{cardName}</div>
-        <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-        <div data-testid="description-card">{cardDescription}</div>
-        <div data-testid="attr1-card">{cardAttr1}</div>
-        <div data-testid="attr2-card">{cardAttr2}</div>
-        <div data-testid="attr3-card">{cardAttr3}</div>
-        <div data-testid="rare-card">{cardRare}</div>
-        {cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </>
+      <Batata shadow="sm" padding="lg" radius="md" withBorder>
+        <Batata.Section>
+          <Image src={ cardImage } alt={ cardName } data-testid="image-card" />
+        </Batata.Section>
+        <Group justify="space-between" mt="md" mb="xs">
+          <Text data-testid="name-card">{cardName}</Text>
+          {cardTrunfo
+            ? <Badge color="red" data-testid="trunfo-card">Super Trunfo</Badge>
+            : null}
+        </Group>
+        <Text data-testid="description-card">{cardDescription}</Text>
+        <Group>
+          <Text data-testid="attr1-card">{cardAttr1}</Text>
+          <Text data-testid="attr2-card">{cardAttr2}</Text>
+          <Text data-testid="attr3-card">{cardAttr3}</Text>
+          <Text data-testid="rare-card">{cardRare}</Text>
+        </Group>
+      </Batata>
     );
   }
 }

@@ -17,7 +17,6 @@ class Form extends React.Component {
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
-      selectChange,
     } = this.props;
 
     return (
@@ -25,66 +24,59 @@ class Form extends React.Component {
         <Text>Adicione uma Carta: </Text>
         <Input
           type="text"
-          name="cardName"
           placeholder="Nome"
           data-testid="name-input"
           id="name"
           value={ cardName }
-          onChange={ onInputChange }
+          onChange={ (e) => onInputChange('cardName', e.target.value) }
         />
         <Input
           type="textarea"
           placeholder="Descrição"
-          name="cardDescription"
           data-testid="description-input"
           id="description"
           value={ cardDescription }
-          onChange={ onInputChange }
+          onChange={ (e) => onInputChange('cardDescription', e.target.value) }
         />
 
         <NumberInput
           label="Primeiro Atributo"
           type="number"
-          name="cardAttr1"
           data-testid="attr1-input"
           id="firstAtribut"
           value={ cardAttr1 }
-          onChange={ onInputChange }
+          onChange={ (e) => onInputChange('cardAttr1', e) }
         />
         <NumberInput
           type="number"
           label="Segundo Atributo"
-          name="cardAttr2"
           data-testid="attr2-input"
           id="secondAtribut"
           value={ cardAttr2 }
-          onChange={ onInputChange }
+          onChange={ (e) => onInputChange('cardAttr2', e) }
         />
         <NumberInput
           type="number"
           label="Terceiro Atributo"
-          name="cardAttr3"
           data-testid="attr3-input"
           id="thirdAtribut"
           value={ cardAttr3 }
-          onChange={ onInputChange }
+          onChange={ (e) => onInputChange('cardAttr3', e) }
         />
         <Input
           type="text"
           placeholder="Imagem"
-          name="cardImage"
           data-testid="image-input"
           id="imgCard"
           value={ cardImage }
-          onChange={ onInputChange }
+          onChange={ (e) => onInputChange('cardImage', e.target.value) }
         />
         <Select
           id="selectRaryCart"
           label="Raridade da Carta"
-          name="cardRare"
           data-testid="rare-input"
           value={ cardRare }
-          onChange={ selectChange }
+          onChange={ (e) => onInputChange('cardRare', e) }
           data={ [
             { name: 'cardRare', value: 'normal', label: 'normal', type: 'select' },
             { name: 'cardRare', value: 'raro', label: 'raro', type: 'select' },
@@ -99,11 +91,10 @@ class Form extends React.Component {
             <Checkbox
               label="Super Trunfo"
               type="checkbox"
-              name="cardTrunfo"
               data-testid="trunfo-input"
               id="superTrunfo"
               checked={ cardTrunfo }
-              onChange={ onInputChange }
+              onChange={ (e) => onInputChange('cardTrunfo', e.target.checked) }
             />)}
         <Button
           data-testid="save-button"
@@ -131,7 +122,6 @@ Form.propTypes = {
   hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  selectChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
 };
 
