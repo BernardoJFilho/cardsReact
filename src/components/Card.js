@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card as Batata, Image, Text, Badge, Group } from '@mantine/core';
+import { Card as Batata, Image, Text, Badge, Group, Space, Center } from '@mantine/core';
 import defaultImage from '../image/defaultImage.jpg';
+
 class Card extends React.Component {
   render() {
     const {
@@ -13,7 +14,9 @@ class Card extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      getColorByRarity,
     } = this.props;
+    const textColor = getColorByRarity(cardRare);
     return (
       <Batata
         h={ 350 }
@@ -26,14 +29,14 @@ class Card extends React.Component {
       >
         <Batata.Section>
           <Image
-            h={ 180 }
-            w="auto"
-            src={ cardImage }
+            width="auto"
+            src={ cardImage || defaultImage }
             alt={ cardName }
+            fit="contain"
             data-testid="image-card"
           />
         </Batata.Section>
-        <Group justify="space-between" mt="md" mb="xs">
+        <Group h={ 20 } justify="space-between" mt="md" mb="xs">
           <Text data-testid="name-card">{cardName}</Text>
           {cardTrunfo
             ? (
@@ -45,16 +48,19 @@ class Card extends React.Component {
               </Badge>
             )
             : null}
-          <Text data-testid="description-card">{cardDescription}</Text>
         </Group>
-        <Group>
+        <Text h={ 20 } data-testid="description-card">{cardDescription}</Text>
+        <Space h="xs" />
+        <Group justify="space-between">
           <Text data-testid="attr1-card">{cardAttr1}</Text>
           <Text data-testid="attr2-card">{cardAttr2}</Text>
           <Text data-testid="attr3-card">{cardAttr3}</Text>
         </Group>
-        <Group>
-          <Text variant="teste" data-testid="rare-card">{cardRare}</Text>
-        </Group>
+        <Space h="xs" />
+        <Space h="xs" />
+        <Center>
+          <Text style={ { color: textColor } } data-testid="rare-card">{cardRare}</Text>
+        </Center>
       </Batata>
     );
   }
@@ -69,6 +75,7 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  getColorByRarity: PropTypes.func.isRequired,
 };
 
 export default Card;

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import './index.css';
 import '@mantine/core/styles.css';
 import App from './App';
-import { createTheme, MantineProvider, rem } from '@mantine/core';
+import { createTheme, MantineProvider, rem, virtualColor } from '@mantine/core';
 
 const theme = createTheme({
   defaultGradient: {
@@ -11,12 +11,13 @@ const theme = createTheme({
     to: 'black',
     deg: 45,
   },
-  defaultTeste: {
-    from: 'blue',
-    to: 'black',
-    deg: 45,
+  colors: {
+    primary: virtualColor({
+      name: 'primary',
+      dark: 'pink',
+      light: 'cyan',
+    }),
   },
-  // primaryColor: 'gray',
   fontFamily: "Fira-code",
 });
 

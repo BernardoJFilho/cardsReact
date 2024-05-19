@@ -29,6 +29,17 @@ class App extends React.Component {
     hasTrunfo: false,
   };
 
+  getColorByRarity(cardRare) {
+    switch (cardRare) {
+    case 'raro':
+      return 'red';
+    case 'muito raro':
+      return 'gold';
+    default:
+      return 'blue';
+    }
+  }
+
   onInputChange = (name, value) => {
     this.setState({
       [name]: value,
@@ -148,10 +159,11 @@ class App extends React.Component {
               cardTrunfo={ cardTrunfo }
               onSaveButtonClick={ this.onSaveButtonClick }
               cardList={ cardList }
+              getColorByRarity={ this.getColorByRarity }
             />
           </Flex>
         </Flex>
-        <ListCard cardList={ cardList } />
+        <ListCard cardList={ cardList } getColorByRarity={ this.getColorByRarity } />
       </Stack>
     );
   }
