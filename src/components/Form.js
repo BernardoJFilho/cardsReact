@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Checkbox, Input, NumberInput, Select, Stack, Text } from '@mantine/core';
+import {
+  Button,
+  Checkbox, Fieldset, Input, NumberInput, Select, Space } from '@mantine/core';
 
 class Form extends React.Component {
   render() {
@@ -20,8 +22,12 @@ class Form extends React.Component {
     } = this.props;
 
     return (
-      <Stack>
-        <Text>Adicione uma Carta: </Text>
+      <Fieldset
+        style={ { border: '1px solid' } }
+        w={ 350 }
+        legend="Adicione uma Carta:"
+        variant="filled"
+      >
         <Input
           type="text"
           placeholder="Nome"
@@ -30,6 +36,7 @@ class Form extends React.Component {
           value={ cardName }
           onChange={ (e) => onInputChange('cardName', e.target.value) }
         />
+        <Space h="xs" />
         <Input
           type="textarea"
           placeholder="Descrição"
@@ -38,7 +45,6 @@ class Form extends React.Component {
           value={ cardDescription }
           onChange={ (e) => onInputChange('cardDescription', e.target.value) }
         />
-
         <NumberInput
           label="Primeiro Atributo"
           type="number"
@@ -63,9 +69,10 @@ class Form extends React.Component {
           value={ cardAttr3 }
           onChange={ (e) => onInputChange('cardAttr3', e) }
         />
+        <Space h="xs" />
         <Input
           type="text"
-          placeholder="Imagem"
+          placeholder="URL da imagem: "
           data-testid="image-input"
           id="imgCard"
           value={ cardImage }
@@ -86,6 +93,7 @@ class Form extends React.Component {
               type: 'select' },
           ] }
         />
+        <Space h="xs" />
         {hasTrunfo ? <div>Você já tem um Super Trunfo em seu baralho</div>
           : (
             <Checkbox
@@ -96,7 +104,10 @@ class Form extends React.Component {
               checked={ cardTrunfo }
               onChange={ (e) => onInputChange('cardTrunfo', e.target.checked) }
             />)}
+        <Space h="xs" />
         <Button
+          variant="gradient"
+          w="100%"
           data-testid="save-button"
           id="salveButton"
           name="saveButton"
@@ -105,7 +116,7 @@ class Form extends React.Component {
         >
           Salvar
         </Button>
-      </Stack>
+      </Fieldset>
     );
   }
 }
