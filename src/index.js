@@ -11,13 +11,6 @@ const theme = createTheme({
     to: 'black',
     deg: 45,
   },
-  colors: {
-    primary: virtualColor({
-      name: 'primary',
-      dark: 'pink',
-      light: 'cyan',
-    }),
-  },
   fontFamily: "Fira-code",
 });
 
