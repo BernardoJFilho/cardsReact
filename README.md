@@ -28,7 +28,7 @@ O projeto de gerador de cartas é uma aplicação web que permite aos usuários 
 
 ## Link do Deploy
 O projeto está disponível online e pode ser acessado através do seguinte link:
-[Link do Deploy da Aplicação](#)
+[https://bernardojfilho.github.io/cardsReact/](https://bernardojfilho.github.io/cardsReact/)
 
 ## Imagens do Projeto
 Abaixo estão algumas imagens que demonstram como é a aplicação:
