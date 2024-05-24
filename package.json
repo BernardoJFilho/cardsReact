@@ -1,4 +1,5 @@
 {
+  "homepage": "https://bernardojfilho.github.io/cardsReact",
   "name": "tryunfo",
   "version": "1.0.1",
   "private": true,
@@ -22,7 +23,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:styles": "npx stylelint '**/*.css'",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx"
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +48,7 @@
   "devDependencies": {
     "@testing-library/dom": "^8.17.1",
     "@trybe/eslint-config-frontend": "^1.7.1",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.38",
     "postcss-preset-mantine": "^1.15.0",
     "postcss-simple-vars": "^7.0.1",
